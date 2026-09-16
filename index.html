@@ -272,42 +272,64 @@ main{flex:1}
 }
 .button:hover{background:var(--hotpink);border-color:var(--hotpink);color:#fff;box-shadow:0 0 15px rgba(255,59,148,.5)}
 
-/* PRE-ORDER MODAL STYLES */
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(5,5,7,0.85);
-  backdrop-filter:blur(8px);
-  z-index:999;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  animation:fadeIn 0.25s ease;
+/* MODULE 001 COLLECTION SHOWCASE */
+.collection-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:30px;
+  margin-top:30px;
 }
-.modal-overlay.active{
-  display:flex;
-}
-.modal-card{
-  background:radial-gradient(circle at 50% 0%,rgba(255,126,187,.2),transparent 60%),var(--ink);
-  border:1px solid var(--pink);
+.product-card{
+  background:linear-gradient(145deg,rgba(35,18,43,.9),rgba(10,8,14,.98));
+  border:1px solid var(--line);
   border-radius:24px;
-  max-width:440px;
-  width:100%;
-  padding:35px 25px;
+  padding:20px;
   text-align:center;
-  position:relative;
-  box-shadow:0 0 35px rgba(255,59,148,0.3);
+  transition:transform 0.25s ease, border-color 0.25s ease;
 }
-.modal-close{
-  position:absolute;
-  top:14px;
-  right:18px;
-  background:none;
-  border:none;
-  color:var(--pink);
-  font-size:22px;
-  cursor:pointer;
+.product-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--hotpink);
+  box-shadow:0 10px 30px rgba(255,59,148,0.25);
+}
+.product-img-wrapper{
+  width:100%;
+  aspect-ratio:1 / 1;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(255,126,187,.2);
+  margin-bottom:18px;
+  background:var(--panel2);
+}
+.product-img-wrapper img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.product-title{
+  font-family:Cinzel,Georgia,serif;
+  font-size:16px;
+  letter-spacing:2px;
+  color:var(--cream);
+  font-weight:600;
+}
+.product-desc{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.6;
+  margin:8px 0 14px;
+}
+.product-tag{
+  display:inline-block;
+  font-family:Cinzel,Georgia,serif;
+  font-size:9px;
+  letter-spacing:2px;
+  color:var(--gold);
+  border:1px solid var(--gold2);
+  padding:3px 10px;
+  border-radius:99px;
+  margin-bottom:12px;
 }
 
 /* READINGS */
@@ -475,10 +497,10 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
   <div class="hero-rule"></div>
 
   <nav class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('apparel')">Apparel Lab</button>
-    <button class="tab-btn" onclick="switchTab('readings')">Divination Services</button>
-    <button class="tab-btn" onclick="switchTab('origins')">Origins</button>
-    <button class="tab-btn" onclick="switchTab('contact')">Contact</button>
+    <button class="tab-btn active" id="btn-apparel" onclick="switchTab('apparel')">Apparel Lab</button>
+    <button class="tab-btn" id="btn-readings" onclick="switchTab('readings')">Divination Services</button>
+    <button class="tab-btn" id="btn-origins" onclick="switchTab('origins')">Origins</button>
+    <button class="tab-btn" id="btn-contact" onclick="switchTab('contact')">Contact</button>
   </nav>
 </header>
 
@@ -527,11 +549,11 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
             <div class="journal-title">LAB JOURNAL 002</div>
           </div>
 
-          <!-- CARD 3 (PRE-ORDER MODAL TRIGGER) -->
+          <!-- CARD 3 (MODULE 001 SHOWCASE LINK) -->
           <div class="insta-card">
-            <div class="insta-item" onclick="openPreorderModal()">
+            <div class="insta-item" onclick="switchTab('module001')">
               <img src="LunarLynxBabyTees1.jpeg" alt="Lunar Lynx Baby Tees Collection">
-              <div class="insta-overlay">🛍️</div>
+              <div class="insta-overlay">✦</div>
             </div>
             <div class="journal-title">MODULE 001</div>
           </div>
@@ -543,6 +565,47 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
           FOLLOW @PURRGALACTIC FOR DROP ANNOUNCEMENTS →
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- PAGE 1.5: MODULE 001 COLLECTION SHOWCASE -->
+  <section id="module001" class="page-section">
+    <div class="section-heading">
+      <div class="kicker">LIMITED COLLECTION</div>
+      <h2>MODULE 001: BABY TEES</h2>
+      <p>Hand-crafted, custom printed baby tees from the lab. Pre-orders opening soon.</p>
+    </div>
+
+    <div class="frame" style="padding:30px 20px; background:rgba(12,9,18,.95);">
+      
+      <div style="text-align:center; margin-bottom:20px;">
+        <button class="button" onclick="switchTab('apparel')">← BACK TO APPAREL LAB</button>
+      </div>
+
+      <div class="collection-grid">
+        <!-- ITEM 1 -->
+        <div class="product-card">
+          <div class="product-img-wrapper">
+            <img src="BabyTee001.PNG" alt="Lunar Lynx Baby Tee Design 001">
+          </div>
+          <div class="product-tag">PRE-ORDER COMING SOON</div>
+          <div class="product-title">BABY TEE 001</div>
+          <div class="product-desc">Custom graphics printed on soft cotton stretch crop tee. Made to order in small batches.</div>
+          <a class="button" href="mailto:Lunarlynxcustomlab@gmail.com?subject=Pre-Order%20Inquiry%20-%20Baby%20Tee%20001">INQUIRE / PRE-ORDER →</a>
+        </div>
+
+        <!-- ITEM 2 -->
+        <div class="product-card">
+          <div class="product-img-wrapper">
+            <img src="BabyTee002.PNG" alt="Lunar Lynx Baby Tee Design 002">
+          </div>
+          <div class="product-tag">PRE-ORDER COMING SOON</div>
+          <div class="product-title">BABY TEE 002</div>
+          <div class="product-desc">Custom graphics printed on soft cotton stretch crop tee. Made to order in small batches.</div>
+          <a class="button" href="mailto:Lunarlynxcustomlab@gmail.com?subject=Pre-Order%20Inquiry%20-%20Baby%20Tee%20002">INQUIRE / PRE-ORDER →</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -684,61 +747,35 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
 </main>
 
-<!-- PRE-ORDER COMING SOON MODAL -->
-<div id="preorderModal" class="modal-overlay" onclick="closePreorderModal(event)">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeModalDirect()">&times;</button>
-    <div class="crescent" style="font-size:32px; margin-bottom:4px;">✨</div>
-    <div class="kicker" style="font-size:10px;">PRE-ORDER DROP</div>
-    <h3 class="serif" style="font-size:22px; letter-spacing:3px; color:var(--pink); margin:6px 0 12px;">MODULE 001</h3>
-    <p style="font-size:12px; color:var(--muted); line-height:1.7;">
-      Pre-orders for the **Module 001 Baby Tees** collection are launching soon! Limited handmade quantities will be available per batch.
-    </p>
-    <div style="margin-top:20px;">
-      <a class="button" href="mailto:Lunarlynxcustomlab@gmail.com?subject=Module%20001%20Pre-Order%20Waitlist" style="background:var(--hotpink); border-color:var(--hotpink); color:#fff;">
-        EMAIL TO GET ON THE DROP LIST →
-      </a>
-    </div>
-  </div>
-</div>
-
 <footer>
   LUNAR LYNX CUSTOM LAB ✦ VEGAS BORN ✦ 2026
 </footer>
 
 <script>
   function switchTab(tabId) {
+    // Hide all sections
     const sections = document.querySelectorAll('.page-section');
     sections.forEach(section => section.classList.remove('active'));
 
+    // Reset button states
     const buttons = document.querySelectorAll('.tab-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
 
+    // Show selected section
     const activeSection = document.getElementById(tabId);
     if (activeSection) {
       activeSection.classList.add('active');
     }
 
-    const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
-    if (activeBtn) {
-      activeBtn.classList.add('active');
+    // Handle tab highlighting (keep 'Apparel Lab' active when viewing Module 001)
+    if (tabId === 'apparel' || tabId === 'module001') {
+      document.getElementById('btn-apparel').classList.add('active');
+    } else {
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if (activeBtn) activeBtn.classList.add('active');
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function openPreorderModal() {
-    document.getElementById('preorderModal').classList.add('active');
-  }
-
-  function closePreorderModal(event) {
-    if (event.target.id === 'preorderModal') {
-      document.getElementById('preorderModal').classList.remove('active');
-    }
-  }
-
-  function closeModalDirect() {
-    document.getElementById('preorderModal').classList.remove('active');
   }
 </script>
 
