@@ -66,7 +66,7 @@ a{color:inherit;text-decoration:none}
   box-shadow:inset 0 0 50px rgba(255,126,187,.05),0 18px 55px var(--shadow);
 }
 .frame:before,.frame:after{
-  content:"💖";
+  content:"";
   position:absolute;
   font-size:14px;
   background:var(--black);
@@ -221,7 +221,7 @@ main{flex:1}
   background:linear-gradient(145deg,rgba(35,18,43,.9),rgba(10,8,14,.98));
 }
 .card-art{text-align:center;color:var(--pink);font-size:38px}
-.reading-name{font-family:Cinzel,Georgia,serif;letter-spacing:2px;font-size:16px;font-weight:600;color:var(--cream)}
+.reading-name{font-family:Cinzel,Georgia,serif;letter-spacing:2px;font-size:16px;font-weight:600;color:var(--cream);word-break:break-word}
 .reading-desc{font-size:11px;color:var(--muted);line-height:1.55;margin-top:5px}
 .price{
   border-left:1px solid rgba(255,126,187,.3);
@@ -231,6 +231,10 @@ main{flex:1}
   color:var(--gold);
   text-align:center;
   white-space:nowrap;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
 }
 .custom{
   margin-top:25px;
@@ -240,7 +244,7 @@ main{flex:1}
   background:linear-gradient(145deg,rgba(48,20,56,.75),rgba(10,8,14,.9));
 }
 .custom h3{font-family:Cinzel,Georgia,serif;letter-spacing:3px;font-size:18px;text-align:center;margin-bottom:18px;color:var(--pink)}
-.custom-row{display:grid;grid-template-columns:1fr auto;gap:15px;padding:15px 0;border-top:1px solid rgba(255,126,187,.2)}
+.custom-row{display:grid;grid-template-columns:1fr auto;gap:15px;padding:15px 0;border-top:1px solid rgba(255,126,187,.2);align-items:center}
 .custom-row p{font-size:11px;color:var(--muted);line-height:1.5}
 .custom-row strong{font-family:Cinzel,Georgia,serif;font-weight:600;font-size:17px;white-space:nowrap;color:var(--gold)}
 
@@ -265,7 +269,8 @@ main{flex:1}
   margin:32px auto 0;
   line-height:1.95;
   font-size:13px;
-  color:var(--muted);
+  color:var(--cream);
+  letter-spacing:1px;
 }
 .origins-body p{
   margin-bottom:22px;
@@ -327,11 +332,11 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
   .brand{letter-spacing:3px}
   .subtitle{letter-spacing:3px}
   .reading-board{padding:10px}
-  .reading-card{grid-template-columns:50px 1fr 65px;gap:10px;padding:15px 12px;min-height:100px;border-radius:19px}
-  .card-art{font-size:26px}
-  .reading-name{font-size:12px;letter-spacing:1px}
-  .reading-desc{font-size:9px}
-  .price{font-size:18px;padding-left:8px}
+  .reading-card{grid-template-columns:30px 1fr auto;gap:12px;padding:16px 14px;min-height:auto;border-radius:19px}
+  .card-art{font-size:22px}
+  .reading-name{font-size:13px;letter-spacing:1px;line-height:1.3}
+  .reading-desc{font-size:10px;line-height:1.4}
+  .price{font-size:18px;padding-left:12px;border-left:1px solid rgba(255,126,187,.3)}
   .about-box,.contact-box,.origins-box,.coming-soon-box{padding:28px 18px}
   .origins-body{font-size:12px;line-height:1.8}
   .origins-script{font-size:34px}
@@ -467,10 +472,10 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
       <h2 class="serif" style="font-size:clamp(28px, 4vw, 38px); letter-spacing:6px; font-weight:500;">THE ORIGINS</h2>
       <div class="origins-subtitle">WHERE CULTURE MEETS COSMOS</div>
 
-      <div class="origins-body">
+      <div class="origins-body serif">
         <p>I’m Darko Reese—a Las Vegas artist with a habit of collecting creative obsessions and turning them into something tangible. Music, poetry, visual art, fashion... apparently, I’ve never been very good at picking just one.</p>
 
-        <p class="serif" style="color:var(--cream); letter-spacing:1px;">Lunar Lynx Custom Lab is where all those worlds get to play together.</p>
+        <p>Lunar Lynx Custom Lab is where all those worlds get to play together.</p>
 
         <div class="origins-divider">✦</div>
 
