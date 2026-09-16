@@ -218,6 +218,7 @@ main{flex:1}
   display:block;
   background:var(--panel2);
   transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  cursor:pointer;
 }
 .insta-item img{
   width:100%;
@@ -270,6 +271,44 @@ main{flex:1}
   cursor:pointer;
 }
 .button:hover{background:var(--hotpink);border-color:var(--hotpink);color:#fff;box-shadow:0 0 15px rgba(255,59,148,.5)}
+
+/* PRE-ORDER MODAL STYLES */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(5,5,7,0.85);
+  backdrop-filter:blur(8px);
+  z-index:999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  animation:fadeIn 0.25s ease;
+}
+.modal-overlay.active{
+  display:flex;
+}
+.modal-card{
+  background:radial-gradient(circle at 50% 0%,rgba(255,126,187,.2),transparent 60%),var(--ink);
+  border:1px solid var(--pink);
+  border-radius:24px;
+  max-width:440px;
+  width:100%;
+  padding:35px 25px;
+  text-align:center;
+  position:relative;
+  box-shadow:0 0 35px rgba(255,59,148,0.3);
+}
+.modal-close{
+  position:absolute;
+  top:14px;
+  right:18px;
+  background:none;
+  border:none;
+  color:var(--pink);
+  font-size:22px;
+  cursor:pointer;
+}
 
 /* READINGS */
 .reading-board{
@@ -467,10 +506,10 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
         <h4 class="serif" style="font-size:13px; letter-spacing:3px; color:var(--pink); margin-bottom:6px;">
           PREVIEW THE LAB @PURRGALACTIC
         </h4>
-        <p style="font-size:11px; color:var(--muted);">Tap an image to view our latest custom creations on Instagram</p>
+        <p style="font-size:11px; color:var(--muted);">Tap an image to view our latest custom creations</p>
 
         <div class="insta-grid">
-          <!-- CARD 1 -->
+          <!-- CARD 1 (IG REEL) -->
           <div class="insta-card">
             <a class="insta-item" href="https://www.instagram.com/purrgalactic/reel/DdPL1kihco9/" target="_blank" rel="noopener">
               <img src="LunarLynxreel1.jpg" alt="Lunar Lynx Custom Apparel Reel 1">
@@ -479,7 +518,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
             <div class="journal-title">LAB JOURNAL 001</div>
           </div>
 
-          <!-- CARD 2 -->
+          <!-- CARD 2 (IG REEL) -->
           <div class="insta-card">
             <a class="insta-item" href="https://www.instagram.com/purrgalactic/reel/DdSXa_ZTm89/" target="_blank" rel="noopener">
               <img src="LunarLynxreel2.jpg" alt="Lunar Lynx Custom Apparel Reel 2">
@@ -488,12 +527,12 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
             <div class="journal-title">LAB JOURNAL 002</div>
           </div>
 
-          <!-- CARD 3 -->
+          <!-- CARD 3 (PRE-ORDER MODAL TRIGGER) -->
           <div class="insta-card">
-            <a class="insta-item" href="https://www.instagram.com/purrgalactic" target="_blank" rel="noopener">
+            <div class="insta-item" onclick="openPreorderModal()">
               <img src="LunarLynxBabyTees1.jpeg" alt="Lunar Lynx Baby Tees Collection">
-              <div class="insta-overlay">✨</div>
-            </a>
+              <div class="insta-overlay">🛍️</div>
+            </div>
             <div class="journal-title">MODULE 001</div>
           </div>
         </div>
@@ -645,34 +684,61 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
 </main>
 
+<!-- PRE-ORDER COMING SOON MODAL -->
+<div id="preorderModal" class="modal-overlay" onclick="closePreorderModal(event)">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModalDirect()">&times;</button>
+    <div class="crescent" style="font-size:32px; margin-bottom:4px;">✨</div>
+    <div class="kicker" style="font-size:10px;">PRE-ORDER DROP</div>
+    <h3 class="serif" style="font-size:22px; letter-spacing:3px; color:var(--pink); margin:6px 0 12px;">MODULE 001</h3>
+    <p style="font-size:12px; color:var(--muted); line-height:1.7;">
+      Pre-orders for the **Module 001 Baby Tees** collection are launching soon! Limited handmade quantities will be available per batch.
+    </p>
+    <div style="margin-top:20px;">
+      <a class="button" href="mailto:Lunarlynxcustomlab@gmail.com?subject=Module%20001%20Pre-Order%20Waitlist" style="background:var(--hotpink); border-color:var(--hotpink); color:#fff;">
+        EMAIL TO GET ON THE DROP LIST →
+      </a>
+    </div>
+  </div>
+</div>
+
 <footer>
   LUNAR LYNX CUSTOM LAB ✦ VEGAS BORN ✦ 2026
 </footer>
 
 <script>
   function switchTab(tabId) {
-    // Hide all page sections
     const sections = document.querySelectorAll('.page-section');
     sections.forEach(section => section.classList.remove('active'));
 
-    // Deactivate all nav buttons
     const buttons = document.querySelectorAll('.tab-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
 
-    // Show selected section
     const activeSection = document.getElementById(tabId);
     if (activeSection) {
       activeSection.classList.add('active');
     }
 
-    // Highlight selected button
     const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
     if (activeBtn) {
       activeBtn.classList.add('active');
     }
 
-    // Smooth scroll to top of content
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function openPreorderModal() {
+    document.getElementById('preorderModal').classList.add('active');
+  }
+
+  function closePreorderModal(event) {
+    if (event.target.id === 'preorderModal') {
+      document.getElementById('preorderModal').classList.remove('active');
+    }
+  }
+
+  function closeModalDirect() {
+    document.getElementById('preorderModal').classList.remove('active');
   }
 </script>
 
