@@ -222,6 +222,20 @@ main{flex:1}
   transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   cursor:pointer;
 }
+
+/* Shiny Glow Effects for All Pods */
+.pod-item:before{
+  content:"";
+  position:absolute;
+  top:-50%; left:-50%; width:200%; height:200%;
+  background:linear-gradient(45deg, transparent 45%, rgba(255,126,187,0.3) 50%, transparent 55%);
+  transform:rotate(30deg);
+  opacity:0;
+  transition:opacity 0.3s ease;
+  pointer-events:none;
+  z-index:2;
+}
+
 /* 2x1 Aspect Ratio for YouTube Transmission Pod */
 .transmission-pod .pod-item{
   aspect-ratio:2 / 1;
@@ -234,16 +248,6 @@ main{flex:1}
   display:block;
   transition:transform 0.3s ease;
 }
-.pod-placeholder{
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  background:radial-gradient(circle at 50% 50%, rgba(255,59,148,0.25), rgba(21,13,30,0.95));
-  color:var(--pink);
-}
 .pod-overlay{
   position:absolute;
   inset:0;
@@ -254,16 +258,21 @@ main{flex:1}
   opacity:0;
   transition:opacity 0.25s ease;
   color:#fff;
-  font-size:24px;
+  font-size:20px;
   font-family:Cinzel,Georgia,serif;
   letter-spacing:3px;
   text-align:center;
   padding:20px;
+  z-index:3;
+  text-shadow:0 0 10px rgba(0,0,0,0.5);
 }
 .pod-card:hover .pod-item{
   transform:translateY(-3px);
   border-color:var(--hotpink);
-  box-shadow:0 0 15px rgba(255,59,148,0.4);
+  box-shadow:0 0 20px rgba(255,59,148,0.6);
+}
+.pod-card:hover .pod-item:before{
+  opacity:1;
 }
 .pod-card:hover img{
   transform:scale(1.04);
@@ -276,9 +285,14 @@ main{flex:1}
   font-family:Cinzel,Georgia,serif;
   font-size:11px;
   letter-spacing:3px;
-  color:var(--gold);
+  color:var(--pink);
   text-align:center;
   font-weight:600;
+  transition:color 0.25s ease, text-shadow 0.25s ease;
+}
+.pod-card:hover .pod-title{
+  color:var(--gold);
+  text-shadow:0 0 8px rgba(255,209,133,0.4);
 }
 .span-2-pod .pod-title{
   font-size:13px;
@@ -558,17 +572,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
         <div class="pod-grid">
           
-          <!-- FEATURED TRANSMISSION 001 POD (Top 2x1 Aspect Ratio YouTube Link Pod) -->
-          <div class="pod-card span-2-pod transmission-pod">
-            <a class="pod-item" href="https://youtu.be/iZy2s3i-uCM?is=ecLF2AGdmu_lZ9XN" target="_blank" rel="noopener">
-              <!-- Using official YouTube thumbnail image by default; replaceable with local file (e.g., Transmission001.jpg) if desired -->
-              <img src="https://img.youtube.com/vi/iZy2s3i-uCM/maxresdefault.jpg" alt="Featured Transmission 001 Video Thumbnail" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/iZy2s3i-uCM/hqdefault.jpg';">
-              <div class="pod-overlay">▶ WATCH TRANSMISSION</div>
-            </a>
-            <div class="pod-title">FEATURED TRANSMISSION 001</div>
-          </div>
-
-          <!-- MODULE POD (Spans 2 columns, 1x1 Aspect Ratio) -->
+          <!-- MODULE 001 POD (Top Center Stage Spot) -->
           <div class="pod-card span-2-pod">
             <div class="pod-item" onclick="switchTab('module001')">
               <img src="Module001.jpeg" alt="Lunar Lynx Vegas Baby Tees Collection">
@@ -577,22 +581,31 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
             <div class="pod-title">MODULE 001 : VEGAS BABY TEES</div>
           </div>
 
-          <!-- LAB JOURNAL 1 POD (1 column) -->
+          <!-- LAB JOURNAL 001 POD (Updated with matching shine & pink title) -->
           <div class="pod-card">
             <a class="pod-item" href="https://www.instagram.com/purrgalactic/reel/DdPL1kihco9/" target="_blank" rel="noopener">
               <img src="LunarLynxreel1.jpg" alt="Lunar Lynx Custom Apparel Reel 1">
-              <div class="pod-overlay">▶</div>
+              <div class="pod-overlay">▶ WATCH REEL</div>
             </a>
             <div class="pod-title">LAB JOURNAL 001</div>
           </div>
 
-          <!-- LAB JOURNAL 2 POD (1 column) -->
+          <!-- LAB JOURNAL 002 POD (Updated with matching shine & pink title) -->
           <div class="pod-card">
             <a class="pod-item" href="https://www.instagram.com/purrgalactic/reel/DdSXa_ZTm89/" target="_blank" rel="noopener">
               <img src="LunarLynxreel2.jpg" alt="Lunar Lynx Custom Apparel Reel 2">
-              <div class="pod-overlay">▶</div>
+              <div class="pod-overlay">▶ WATCH REEL</div>
             </a>
             <div class="pod-title">LAB JOURNAL 002</div>
+          </div>
+
+          <!-- FEATURED TRANSMISSION 001 POD (2x1 Aspect Ratio YouTube Link) -->
+          <div class="pod-card span-2-pod transmission-pod">
+            <a class="pod-item" href="https://youtu.be/iZy2s3i-uCM?is=ecLF2AGdmu_lZ9XN" target="_blank" rel="noopener">
+              <img src="https://img.youtube.com/vi/iZy2s3i-uCM/maxresdefault.jpg" alt="Featured Transmission 001 Video Thumbnail" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/iZy2s3i-uCM/hqdefault.jpg';">
+              <div class="pod-overlay">▶ WATCH TRANSMISSION</div>
+            </a>
+            <div class="pod-title">FEATURED TRANSMISSION 001</div>
           </div>
 
         </div>
