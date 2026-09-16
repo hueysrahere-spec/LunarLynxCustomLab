@@ -170,7 +170,7 @@ main{flex:1}
 
 /* COMING SOON BANNER */
 .coming-soon-box{
-  padding:60px 30px;
+  padding:50px 30px;
   text-align:center;
   background:radial-gradient(circle at 50% 20%,rgba(255,126,187,.25),transparent 50%),rgba(12,9,18,.95);
   max-width:760px;
@@ -187,6 +187,59 @@ main{flex:1}
   padding:6px 18px;
   border-radius:99px;
   margin-bottom:20px;
+}
+
+/* STATIC INSTAGRAM GRID */
+.insta-feed-section{
+  margin-top:35px;
+  border-top:1px solid rgba(255,126,187,.2);
+  padding-top:30px;
+}
+.insta-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:12px;
+  margin-top:20px;
+}
+.insta-item{
+  position:relative;
+  aspect-ratio:1 / 1;
+  border-radius:16px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  display:block;
+  background:var(--panel2);
+  transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.insta-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.3s ease;
+}
+.insta-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(255,59,148,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity 0.25s ease;
+  color:#fff;
+  font-size:20px;
+}
+.insta-item:hover{
+  transform:translateY(-3px);
+  border-color:var(--hotpink);
+  box-shadow:0 0 15px rgba(255,59,148,0.4);
+}
+.insta-item:hover img{
+  transform:scale(1.06);
+}
+.insta-item:hover .insta-overlay{
+  opacity:1;
 }
 
 .button{
@@ -340,6 +393,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
   .custom{padding:18px 14px}
   .custom-row{grid-template-columns:1fr;gap:6px;text-align:center}
   .custom-row strong{font-size:15px;margin-top:4px}
+  .insta-grid{grid-template-columns:repeat(2, 1fr);gap:8px;}
   .about-box,.contact-box,.origins-box,.coming-soon-box{padding:28px 18px}
   .origins-body{font-size:12px;line-height:1.8}
   .origins-script{font-size:34px}
@@ -348,7 +402,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .button,.tab-btn{transition:none}
+  .button,.tab-btn,.insta-item,.insta-item img,.insta-overlay{transition:none}
 }
 </style>
 </head>
@@ -372,7 +426,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
 <main class="container">
 
-  <!-- PAGE 1: APPAREL (COMING SOON) -->
+  <!-- PAGE 1: APPAREL LAB -->
   <section id="apparel" class="page-section active">
     <div class="section-heading">
       <div class="kicker">WEAR THE MAGIC</div>
@@ -388,6 +442,33 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
       <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:520px; margin:auto;">
         We are currently awaiting our next shipment of blank garments and custom art materials! New rotating collections, custom clothing, and wearable art pieces will be available here soon.
       </p>
+
+      <!-- INSTAGRAM PHOTO GRID -->
+      <div class="insta-feed-section">
+        <h4 class="serif" style="font-size:13px; letter-spacing:3px; color:var(--pink); margin-bottom:6px;">
+          PREVIEW THE LAB @PURRGALACTIC
+        </h4>
+        <p style="font-size:11px; color:var(--muted);">Tap an image to view our latest custom creations on Instagram</p>
+
+        <div class="insta-grid">
+          <a class="insta-item" href="https://www.instagram.com/purrgalactic/reel/DdPL1kihco9/" target="_blank" rel="noopener">
+            <img src="https://via.placeholder.com/400x400/1d1129/ff7ebb?text=Reel+1" alt="Lunar Lynx Custom Apparel Reel">
+            <div class="insta-overlay">▶</div>
+          </a>
+          <a class="insta-item" href="https://www.instagram.com/purrgalactic/reel/DdSXa_ZTm89/" target="_blank" rel="noopener">
+            <img src="https://via.placeholder.com/400x400/1d1129/ff7ebb?text=Reel+2" alt="Lunar Lynx Custom Apparel Reel">
+            <div class="insta-overlay">▶</div>
+          </a>
+          <a class="insta-item" href="https://www.instagram.com/purrgalactic" target="_blank" rel="noopener">
+            <img src="https://via.placeholder.com/400x400/1d1129/ff7ebb?text=Custom+Art+3" alt="Lunar Lynx Custom Apparel Piece">
+            <div class="insta-overlay">✨</div>
+          </a>
+          <a class="insta-item" href="https://www.instagram.com/purrgalactic" target="_blank" rel="noopener">
+            <img src="https://via.placeholder.com/400x400/1d1129/ff7ebb?text=Custom+Art+4" alt="Lunar Lynx Custom Apparel Piece">
+            <div class="insta-overlay">✨</div>
+          </a>
+        </div>
+      </div>
 
       <div style="margin-top:28px;">
         <a class="button" href="https://www.instagram.com/purrgalactic?stkn=MWhjc3RxcHIyZWlvMA==" target="_blank" rel="noopener">
