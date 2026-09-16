@@ -196,13 +196,21 @@ main{flex:1}
   padding-top:30px;
 }
 .insta-grid{
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:12px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
   margin-top:20px;
+}
+.insta-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:220px;
 }
 .insta-item{
   position:relative;
+  width:100%;
   aspect-ratio:1 / 1;
   border-radius:16px;
   border:1px solid var(--line);
@@ -228,18 +236,27 @@ main{flex:1}
   opacity:0;
   transition:opacity 0.25s ease;
   color:#fff;
-  font-size:20px;
+  font-size:24px;
 }
-.insta-item:hover{
+.insta-card:hover .insta-item{
   transform:translateY(-3px);
   border-color:var(--hotpink);
   box-shadow:0 0 15px rgba(255,59,148,0.4);
 }
-.insta-item:hover img{
+.insta-card:hover img{
   transform:scale(1.06);
 }
-.insta-item:hover .insta-overlay{
+.insta-card:hover .insta-overlay{
   opacity:1;
+}
+.journal-title{
+  margin-top:10px;
+  font-family:Cinzel,Georgia,serif;
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--gold);
+  text-align:center;
+  font-weight:600;
 }
 
 .button{
@@ -393,7 +410,9 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
   .custom{padding:18px 14px}
   .custom-row{grid-template-columns:1fr;gap:6px;text-align:center}
   .custom-row strong{font-size:15px;margin-top:4px}
-  .insta-grid{grid-template-columns:repeat(2, 1fr);gap:8px;}
+  .insta-grid{gap:12px;}
+  .insta-card{width:140px;}
+  .journal-title{font-size:9px;letter-spacing:1px;}
   .about-box,.contact-box,.origins-box,.coming-soon-box{padding:28px 18px}
   .origins-body{font-size:12px;line-height:1.8}
   .origins-script{font-size:34px}
@@ -451,22 +470,23 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
         <p style="font-size:11px; color:var(--muted);">Tap an image to view our latest custom creations on Instagram</p>
 
         <div class="insta-grid">
-          <a class="insta-item" href="https://www.instagram.com/purrgalactic/reel/DdPL1kihco9/" target="_blank" rel="noopener">
-            <img src="LunarLynxreel1.jpg" alt="Lunar Lynx Custom Apparel Reel 1">
-            <div class="insta-overlay">▶</div>
-          </a>
-          <a class="insta-item" href="https://www.instagram.com/purrgalactic/reel/DdSXa_ZTm89/" target="_blank" rel="noopener">
-            <img src="LunarLynxreel2.jpg" alt="Lunar Lynx Custom Apparel Reel 2">
-            <div class="insta-overlay">▶</div>
-          </a>
-          <a class="insta-item" href="https://www.instagram.com/purrgalactic" target="_blank" rel="noopener">
-            <img src="LunarLynxreel3.jpg" alt="Lunar Lynx Custom Apparel Piece 3">
-            <div class="insta-overlay">✨</div>
-          </a>
-          <a class="insta-item" href="https://www.instagram.com/purrgalactic" target="_blank" rel="noopener">
-            <img src="LunarLynxreel4.jpg" alt="Lunar Lynx Custom Apparel Piece 4">
-            <div class="insta-overlay">✨</div>
-          </a>
+          <!-- CARD 1 -->
+          <div class="insta-card">
+            <a class="insta-item" href="https://www.instagram.com/purrgalactic/reel/DdPL1kihco9/" target="_blank" rel="noopener">
+              <img src="LunarLynxreel1.jpg" alt="Lunar Lynx Custom Apparel Reel 1">
+              <div class="insta-overlay">▶</div>
+            </a>
+            <div class="journal-title">LAB JOURNAL 001</div>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="insta-card">
+            <a class="insta-item" href="https://www.instagram.com/purrgalactic/reel/DdSXa_ZTm89/" target="_blank" rel="noopener">
+              <img src="LunarLynxreel2.jpg" alt="Lunar Lynx Custom Apparel Reel 2">
+              <div class="insta-overlay">▶</div>
+            </a>
+            <div class="journal-title">LAB JOURNAL 002</div>
+          </div>
         </div>
       </div>
 
