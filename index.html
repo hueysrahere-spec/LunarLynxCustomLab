@@ -31,9 +31,9 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 
-/* 1. Hide default system cursor on desktop */
+/* 1. Universal Default System Cursor Hide for Desktop */
 @media (min-width: 769px) {
-  body, a, button, .pod-item, input, textarea {
+  *, body, html, a, button, input, textarea, .pod-item, .product-card, .reading-card {
     cursor: none !important;
   }
 }
@@ -182,7 +182,6 @@ nav.tab-nav{
   font-family:Cinzel,Georgia,serif;
   font-size:11px;
   letter-spacing:2px;
-  cursor:pointer;
   transition:.2s ease;
   backdrop-filter:blur(6px);
 }
@@ -271,7 +270,6 @@ main{flex:1; position:relative; z-index:1;}
   display:block;
   background:var(--panel2);
   transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  cursor:pointer;
 }
 
 /* Shiny Glow Effects for All Pods */
@@ -359,7 +357,6 @@ main{flex:1; position:relative; z-index:1;}
   font-family:Cinzel,Georgia,serif;font-size:10px;letter-spacing:2px;font-weight:600;
   background:rgba(255,126,187,.08);
   transition:.2s ease;
-  cursor:pointer;
 }
 .button:hover{background:var(--hotpink);border-color:var(--hotpink);color:#fff;box-shadow:0 0 15px rgba(255,59,148,.5)}
 
@@ -645,7 +642,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
   <section id="apparel" class="page-section active">
     <div class="section-heading">
       <div class="kicker">WEAR THE MAGIC</div>
-      <h2>CUSTOM APPAREL & CREATIONS</h2>
+      <h2>The Lab & Beyond</h2>
     </div>
 
     <div class="frame coming-soon-box">
