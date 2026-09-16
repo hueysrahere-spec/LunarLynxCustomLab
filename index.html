@@ -30,6 +30,14 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+
+/* 1. Hide default system cursor on desktop */
+@media (min-width: 769px) {
+  body, a, button, .pod-item, input, textarea {
+    cursor: none !important;
+  }
+}
+
 body{
   color:var(--cream);
   background:
@@ -43,6 +51,44 @@ body{
   display:flex;
   flex-direction:column;
   position:relative;
+}
+
+/* 2. Custom Cat Astronaut Cursor Container Styles */
+#cat-astronaut-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    pointer-events: none; /* Ensures the cursor doesn't block clicking elements */
+    transform: translate(-50%, -50%); /* Centers the cursor tip on exact coordinate */
+    z-index: 999999;
+    transition: transform 0.1s ease-out;
+}
+
+/* Floating animation for the astronaut */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(3deg); }
+}
+
+.cursor-svg {
+    width: 100%;
+    height: 100%;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+}
+
+/* Playful click effect */
+#cat-astronaut-cursor.active {
+    transform: translate(-50%, -50%) scale(0.85) rotate(-10deg);
+}
+
+/* Hide custom cursor on mobile touch screens */
+@media (max-width: 768px) {
+  #cat-astronaut-cursor {
+    display: none !important;
+  }
 }
 
 /* INTERACTIVE COSMIC CANVAS BACKGROUND */
@@ -537,6 +583,47 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 <!-- Interactive Particle Canvas -->
 <canvas id="space-canvas"></canvas>
 
+<!-- The Cat Astronaut Cursor Element -->
+<div id="cat-astronaut-cursor">
+    <svg class="cursor-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Spacesuit Backpack -->
+        <rect x="30" y="45" width="20" height="30" rx="6" fill="#e0e0e0" stroke="#333" stroke-width="3"/>
+        
+        <!-- Helmet Glass / Bubble -->
+        <circle cx="50" cy="50" r="26" fill="#1a1a2e" stroke="#e0e0e0" stroke-width="4"/>
+        <!-- Glass Reflection/Shine -->
+        <path d="M 38 38 Q 45 32 52 38" stroke="rgba(255,255,255,0.6)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        
+        <!-- Cat Head Inside Helmet -->
+        <circle cx="50" cy="52" r="16" fill="#ffb703"/>
+        <!-- Cat Ears -->
+        <polygon points="37,42 43,28 47,40" fill="#ffb703" stroke="#333" stroke-linejoin="round" stroke-width="2"/>
+        <polygon points="63,42 57,28 53,40" fill="#ffb703" stroke="#333" stroke-linejoin="round" stroke-width="2"/>
+        <!-- Inner Ears -->
+        <polygon points="39,40 43,32 45,39" fill="#ff758c"/>
+        <polygon points="61,40 57,32 55,39" fill="#ff758c"/>
+        
+        <!-- Cat Face Features -->
+        <!-- Eyes -->
+        <circle cx="44" cy="50" r="2" fill="#222"/>
+        <circle cx="56" cy="50" r="2" fill="#222"/>
+        <!-- Nose & Mouth -->
+        <polygon points="50,54 48,52 52,52" fill="#ff758c"/>
+        <path d="M 48 56 Q 50 58 52 56" stroke="#222" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Whiskers -->
+        <line x1="38" y1="53" x2="44" y2="54" stroke="#222" stroke-width="1.5"/>
+        <line x1="38" y1="56" x2="44" y2="55" stroke="#222" stroke-width="1.5"/>
+        <line x1="62" y1="53" x2="56" y2="54" stroke="#222" stroke-width="1.5"/>
+        <line x1="62" y1="56" x2="56" y2="55" stroke="#222" stroke-width="1.5"/>
+
+        <!-- Space Suit Collar / Body -->
+        <path d="M 36 70 Q 50 64 64 70 L 68 82 Q 50 88 32 82 Z" fill="#ffffff" stroke="#333" stroke-width="3"/>
+        
+        <!-- Tiny Star Floating Next to Cat -->
+        <path d="M 75 25 L 77 32 L 84 34 L 77 36 L 75 43 L 73 36 L 66 34 L 73 32 Z" fill="#ffd166"/>
+    </svg>
+</div>
+
 <header class="container">
   <div class="crescent">☾</div>
   <h1 class="brand">Lunar Lynx</h1>
@@ -861,6 +948,33 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  /* CUSTOM CAT ASTRONAUT CURSOR SCRIPT */
+  const cursor = document.getElementById('cat-astronaut-cursor');
+
+  window.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      cursor.style.left = `${x}px`;
+      cursor.style.top = `${y}px`;
+  });
+
+  window.addEventListener('mousedown', () => {
+      cursor.classList.add('active');
+  });
+
+  window.addEventListener('mouseup', () => {
+      cursor.classList.remove('active');
+  });
+
+  document.addEventListener('mouseleave', () => {
+      cursor.style.display = 'none';
+  });
+
+  document.addEventListener('mouseenter', () => {
+      cursor.style.display = 'block';
+  });
+
 
   /* INTERACTIVE CLOUD & SPACE DUST CANVAS SCRIPT */
   (function initSpaceCanvas() {
