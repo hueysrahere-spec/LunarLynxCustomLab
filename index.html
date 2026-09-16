@@ -42,19 +42,22 @@ body{
   min-height:100vh;
   display:flex;
   flex-direction:column;
+  position:relative;
 }
-body:before{
-  content:"";
-  position:fixed;inset:0;pointer-events:none;z-index:-1;
-  opacity:.45;
-  background-image:
-    radial-gradient(circle,#fff 0 1.2px,transparent 1.5px),
-    radial-gradient(circle,#ff9ed2 0 1px,transparent 1.3px);
-  background-size:105px 117px,150px 135px;
-  background-position:12px 24px,65px 71px;
+
+/* INTERACTIVE COSMIC CANVAS BACKGROUND */
+#space-canvas {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  z-index:0;
 }
+
 a{color:inherit;text-decoration:none}
-.container{width:min(1120px,calc(100% - 28px));margin:auto}
+.container{width:min(1120px,calc(100% - 28px));margin:auto;position:relative;z-index:1}
 .serif{font-family:Cinzel,Georgia,serif}
 .cursive{font-family:'Great Vibes', cursive, Georgia, serif}
 
@@ -64,6 +67,7 @@ a{color:inherit;text-decoration:none}
   border-radius:30px;
   position:relative;
   box-shadow:inset 0 0 50px rgba(255,126,187,.05),0 18px 55px var(--shadow);
+  backdrop-filter: blur(4px);
 }
 .frame:before,.frame:after{
   content:"";
@@ -124,7 +128,7 @@ nav.tab-nav{
   margin:28px 0 10px;
 }
 .tab-btn{
-  background:rgba(30,15,38,0.8);
+  background:rgba(30,15,38,0.85);
   border:1px solid var(--line);
   color:var(--cream);
   padding:10px 20px;
@@ -134,6 +138,7 @@ nav.tab-nav{
   letter-spacing:2px;
   cursor:pointer;
   transition:.2s ease;
+  backdrop-filter:blur(6px);
 }
 .tab-btn:hover{
   border-color:var(--pink);
@@ -148,7 +153,7 @@ nav.tab-nav{
 }
 
 /* PAGE SECTIONS SWITCHING */
-main{flex:1}
+main{flex:1; position:relative; z-index:1;}
 .page-section{
   display:none;
   padding:30px 0 60px;
@@ -172,7 +177,7 @@ main{flex:1}
 .coming-soon-box{
   padding:50px 30px;
   text-align:center;
-  background:radial-gradient(circle at 50% 20%,rgba(255,126,187,.25),transparent 50%),rgba(12,9,18,.95);
+  background:radial-gradient(circle at 50% 20%,rgba(255,126,187,.25),transparent 50%),rgba(12,9,18,.92);
   max-width:760px;
   margin:auto;
 }
@@ -377,7 +382,7 @@ main{flex:1}
   padding:22px;
   background:
     radial-gradient(circle at 50% 0%,rgba(255,126,187,.15),transparent 40%),
-    rgba(14,10,20,.95);
+    rgba(14,10,20,.92);
 }
 .reading-card{
   min-height:118px;
@@ -423,7 +428,7 @@ main{flex:1}
 .origins-box{
   padding:50px 32px;
   text-align:center;
-  background:radial-gradient(circle at 50% 10%,rgba(255,59,148,.18),transparent 50%),rgba(14,10,20,.94);
+  background:radial-gradient(circle at 50% 10%,rgba(255,59,148,.18),transparent 50%),rgba(14,10,20,.92);
   max-width:820px;
   margin:auto;
 }
@@ -479,7 +484,7 @@ main{flex:1}
 .contact-box{
   padding:48px 30px;
   text-align:center;
-  background:radial-gradient(circle at 50% 20%,rgba(255,126,187,.22),transparent 50%),rgba(12,9,18,.92);
+  background:radial-gradient(circle at 50% 20%,rgba(255,126,187,.22),transparent 50%),rgba(12,9,18,.90);
   max-width:760px;
   margin:auto;
 }
@@ -494,7 +499,7 @@ main{flex:1}
 .contact-links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:20px}
 
 /* FOOTER */
-footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinzel,Georgia,serif;font-size:10px;letter-spacing:4px;margin-top:auto}
+footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinzel,Georgia,serif;font-size:10px;letter-spacing:4px;margin-top:auto;position:relative;z-index:1}
 
 /* MOBILE */
 @media(max-width:760px){
@@ -528,6 +533,9 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 </head>
 
 <body>
+
+<!-- Interactive Particle Canvas -->
+<canvas id="space-canvas"></canvas>
 
 <header class="container">
   <div class="crescent">☾</div>
@@ -581,7 +589,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
             <div class="pod-title">MODULE 001 : VEGAS BABY TEES</div>
           </div>
 
-          <!-- LAB JOURNAL 001 POD (Updated with matching shine & pink title) -->
+          <!-- LAB JOURNAL 001 POD -->
           <div class="pod-card">
             <a class="pod-item" href="https://www.instagram.com/purrgalactic/reel/DdPL1kihco9/" target="_blank" rel="noopener">
               <img src="LunarLynxreel1.jpg" alt="Lunar Lynx Custom Apparel Reel 1">
@@ -590,7 +598,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
             <div class="pod-title">LAB JOURNAL 001</div>
           </div>
 
-          <!-- LAB JOURNAL 002 POD (Updated with matching shine & pink title) -->
+          <!-- LAB JOURNAL 002 POD -->
           <div class="pod-card">
             <a class="pod-item" href="https://www.instagram.com/purrgalactic/reel/DdSXa_ZTm89/" target="_blank" rel="noopener">
               <img src="LunarLynxreel2.jpg" alt="Lunar Lynx Custom Apparel Reel 2">
@@ -599,7 +607,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
             <div class="pod-title">LAB JOURNAL 002</div>
           </div>
 
-          <!-- FEATURED TRANSMISSION 001 POD (2x1 Aspect Ratio YouTube Link) -->
+          <!-- FEATURED TRANSMISSION 001 POD -->
           <div class="pod-card span-2-pod transmission-pod">
             <a class="pod-item" href="https://youtu.be/iZy2s3i-uCM?is=ecLF2AGdmu_lZ9XN" target="_blank" rel="noopener">
               <img src="https://img.youtube.com/vi/iZy2s3i-uCM/maxresdefault.jpg" alt="Featured Transmission 001 Video Thumbnail" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/iZy2s3i-uCM/hqdefault.jpg';">
@@ -826,21 +834,17 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
 <script>
   function switchTab(tabId) {
-    // Hide all sections
     const sections = document.querySelectorAll('.page-section');
     sections.forEach(section => section.classList.remove('active'));
 
-    // Reset button states
     const buttons = document.querySelectorAll('.tab-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
 
-    // Show selected section
     const activeSection = document.getElementById(tabId);
     if (activeSection) {
       activeSection.classList.add('active');
     }
 
-    // Handle tab highlighting (keep 'Apparel Lab' active when viewing Module 001)
     if (tabId === 'apparel' || tabId === 'module001') {
       document.getElementById('btn-apparel').classList.add('active');
     } else {
@@ -850,6 +854,141 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  /* INTERACTIVE CLOUD & SPACE DUST CANVAS SCRIPT */
+  (function initSpaceCanvas() {
+    const canvas = document.getElementById('space-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let particles = [];
+    let mouse = { x: -1000, y: -1000, radius: 140 };
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      createParticles();
+    }
+
+    class Particle {
+      constructor(type) {
+        this.type = type; // 'star' or 'cloud'
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
+
+        if (this.type === 'cloud') {
+          this.size = Math.random() * 45 + 25;
+          this.alpha = Math.random() * 0.12 + 0.04;
+          // Colors: soft pink, purple, or gold dust
+          const colors = ['255, 126, 187', '184, 99, 214', '255, 209, 133'];
+          this.color = colors[Math.floor(Math.random() * colors.length)];
+        } else {
+          this.size = Math.random() * 2 + 0.8;
+          this.alpha = Math.random() * 0.7 + 0.3;
+          this.color = Math.random() > 0.3 ? '255, 255, 255' : '255, 126, 187';
+        }
+      }
+
+      update() {
+        // Drift base position
+        this.baseX += this.vx;
+        this.baseY += this.vy;
+
+        if (this.baseX < -50) this.baseX = width + 50;
+        if (this.baseX > width + 50) this.baseX = -50;
+        if (this.baseY < -50) this.baseY = height + 50;
+        if (this.baseY > height + 50) this.baseY = -50;
+
+        // Mouse Repulsion Math
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius) {
+          let force = (mouse.radius - distance) / mouse.radius;
+          let angle = Math.atan2(dy, dx);
+          let moveX = Math.cos(angle) * force * 45;
+          let moveY = Math.sin(angle) * force * 45;
+
+          this.x -= moveX * (this.type === 'cloud' ? 0.4 : 0.8);
+          this.y -= moveY * (this.type === 'cloud' ? 0.4 : 0.8);
+        } else {
+          // Smooth return to base drifted spot
+          this.x += (this.baseX - this.x) * 0.05;
+          this.y += (this.baseY - this.y) * 0.05;
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        if (this.type === 'cloud') {
+          let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+          gradient.addColorStop(0, `rgba(${this.color}, ${this.alpha})`);
+          gradient.addColorStop(1, `rgba(${this.color}, 0)`);
+          ctx.fillStyle = gradient;
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    function createParticles() {
+      particles = [];
+      const density = (width * height) / 10000;
+      const cloudCount = Math.floor(density * 0.35);
+      const starCount = Math.floor(density * 0.8);
+
+      for (let i = 0; i < cloudCount; i++) {
+        particles.push(new Particle('cloud'));
+      }
+      for (let i = 0; i < starCount; i++) {
+        particles.push(new Particle('star'));
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    });
+
+    window.addEventListener('mouseleave', () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+
+    window.addEventListener('resize', resize);
+
+    resize();
+    animate();
+  })();
 </script>
 
 </body>
