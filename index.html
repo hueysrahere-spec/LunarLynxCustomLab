@@ -33,7 +33,7 @@ html{scroll-behavior:smooth}
 
 /* 1. Universal Default System Cursor Hide for Desktop */
 @media (min-width: 769px) {
-  *, body, html, a, button, input, textarea, .pod-item, .product-card, .reading-card {
+  *, body, html, a, button, input, textarea, .pod-item, .product-card, .reading-card, .vendor-widget-card {
     cursor: none !important;
   }
 }
@@ -60,13 +60,12 @@ body{
     left: 0;
     width: 48px;
     height: 48px;
-    pointer-events: none; /* Ensures the cursor doesn't block clicking elements */
-    transform: translate(-50%, -50%); /* Centers the cursor tip on exact coordinate */
+    pointer-events: none;
+    transform: translate(-50%, -50%);
     z-index: 999999;
     transition: transform 0.1s ease-out;
 }
 
-/* Floating animation for the astronaut */
 @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
     50% { transform: translateY(-4px) rotate(3deg); }
@@ -79,12 +78,10 @@ body{
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
 }
 
-/* Playful click effect */
 #cat-astronaut-cursor.active {
     transform: translate(-50%, -50%) scale(0.85) rotate(-10deg);
 }
 
-/* Hide custom cursor on mobile touch screens */
 @media (max-width: 768px) {
   #cat-astronaut-cursor {
     display: none !important;
@@ -218,13 +215,27 @@ main{flex:1; position:relative; z-index:1;}
 .section-heading h2{font-family:Cinzel,Georgia,serif;font-weight:600;font-size:clamp(26px,4.5vw,38px);letter-spacing:4px;margin-top:8px;color:var(--cream)}
 .section-heading p{color:var(--muted);font-size:12px;line-height:1.7;margin:10px auto 0;max-width:620px}
 
+/* APPAREL LAB LAYOUT WITH VENDOR WIDGET SIDEBAR */
+.lab-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 25px;
+  align-items: start;
+  max-width: 1080px;
+  margin: auto;
+}
+
+@media(max-width: 960px) {
+  .lab-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* COMING SOON BANNER */
 .coming-soon-box{
-  padding:50px 30px;
+  padding:40px 24px;
   text-align:center;
   background:radial-gradient(circle at 50% 20%,rgba(255,126,187,.25),transparent 50%),rgba(12,9,18,.92);
-  max-width:760px;
-  margin:auto;
 }
 .coming-soon-badge{
   display:inline-block;
@@ -272,7 +283,6 @@ main{flex:1; position:relative; z-index:1;}
   transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Shiny Glow Effects for All Pods */
 .pod-item:before{
   content:"";
   position:absolute;
@@ -285,7 +295,6 @@ main{flex:1; position:relative; z-index:1;}
   z-index:2;
 }
 
-/* 2x1 Aspect Ratio for YouTube Transmission Pod */
 .transmission-pod .pod-item{
   aspect-ratio:2 / 1;
 }
@@ -347,6 +356,296 @@ main{flex:1; position:relative; z-index:1;}
   font-size:13px;
   letter-spacing:4px;
   color:var(--pink);
+}
+
+/* VENDOR SCHEDULE MINI WIDGET (SIDEBAR) */
+.vendor-widget-card {
+  background: linear-gradient(145deg, rgba(25, 12, 35, 0.95), rgba(10, 8, 14, 0.98));
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.vendor-widget-card:hover {
+  border-color: var(--hotpink);
+  box-shadow: 0 0 25px rgba(255, 59, 148, 0.35);
+  transform: translateY(-2px);
+}
+.vendor-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 126, 187, 0.25);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+.vendor-widget-title {
+  font-family: Cinzel, Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  font-weight: 600;
+}
+.mini-cal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Cinzel, Georgia, serif;
+  font-size: 11px;
+  color: var(--pink);
+  margin-bottom: 10px;
+}
+.mini-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  text-align: center;
+  font-size: 10px;
+  margin-bottom: 14px;
+}
+.mini-cal-day-header {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 600;
+  padding-bottom: 4px;
+}
+.mini-cal-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: var(--cream);
+  background: rgba(255, 126, 187, 0.03);
+  font-size: 10px;
+  position: relative;
+}
+.mini-cal-cell.other-month {
+  color: rgba(212, 191, 214, 0.25);
+}
+.mini-cal-cell.has-event {
+  background: rgba(255, 59, 148, 0.25);
+  border: 1px solid var(--hotpink);
+  color: var(--gold);
+  font-weight: bold;
+}
+.mini-cal-cell.has-event::after {
+  content: "✦";
+  font-size: 6px;
+  color: var(--gold);
+  position: absolute;
+  bottom: 1px;
+}
+.vendor-widget-footer {
+  text-align: center;
+  border-top: 1px solid rgba(255, 126, 187, 0.2);
+  padding-top: 12px;
+}
+
+/* FULL TRANSMISSION VENDOR SCHEDULE MODAL OVERLAY */
+#vendor-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(5, 5, 7, 0.88);
+  backdrop-filter: blur(12px);
+  padding: 20px;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease;
+}
+#vendor-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.transmission-container {
+  width: min(920px, 100%);
+  background: linear-gradient(145deg, rgba(25, 12, 38, 0.95), rgba(8, 6, 12, 0.98));
+  border: 1px solid var(--hotpink);
+  border-radius: 28px;
+  box-shadow: 0 0 50px rgba(255, 59, 148, 0.4), inset 0 0 30px rgba(255, 126, 187, 0.1);
+  padding: 30px;
+  position: relative;
+}
+.transmission-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+.transmission-status {
+  font-family: Cinzel, Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--pink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.transmission-status span {
+  width: 8px;
+  height: 8px;
+  background: var(--hotpink);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--hotpink);
+  animation: pulseDot 1.5s infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+.close-transmission-btn {
+  background: rgba(255, 59, 148, 0.15);
+  border: 1px solid var(--pink);
+  color: var(--cream);
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-family: Cinzel, Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: 0.2s ease;
+}
+.close-transmission-btn:hover {
+  background: var(--hotpink);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 59, 148, 0.5);
+}
+
+.transmission-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+@media(max-width: 768px) {
+  .transmission-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.full-cal-wrapper {
+  background: rgba(14, 8, 22, 0.85);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px;
+}
+.full-cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  font-family: Cinzel, Georgia, serif;
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 14px;
+}
+.cal-nav-btn {
+  background: rgba(255,126,187,0.1);
+  border: 1px solid var(--line);
+  color: var(--cream);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+.cal-nav-btn:hover {
+  background: var(--hotpink);
+  border-color: var(--hotpink);
+  color: #fff;
+}
+.full-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+.full-cal-day-header {
+  font-family: Cinzel, Georgia, serif;
+  font-size: 10px;
+  color: var(--purple);
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+.full-cal-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 126, 187, 0.04);
+  border: 1px solid rgba(255, 126, 187, 0.1);
+  font-size: 11px;
+  transition: 0.2s;
+  position: relative;
+}
+.full-cal-cell.other-month {
+  color: rgba(212, 191, 214, 0.25);
+  background: transparent;
+}
+.full-cal-cell.has-event {
+  background: rgba(255, 59, 148, 0.28);
+  border-color: var(--hotpink);
+  color: var(--gold);
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(255, 59, 148, 0.3);
+}
+.full-cal-cell.has-event:hover {
+  transform: scale(1.08);
+  background: rgba(255, 59, 148, 0.45);
+}
+
+.events-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.event-detail-item {
+  background: rgba(20, 12, 30, 0.9);
+  border: 1px solid rgba(255, 126, 187, 0.3);
+  border-radius: 14px;
+  padding: 14px 16px;
+  transition: 0.2s;
+}
+.event-detail-item:hover {
+  border-color: var(--hotpink);
+  box-shadow: 0 0 15px rgba(255, 59, 148, 0.2);
+  transform: translateX(4px);
+}
+.event-date-badge {
+  font-family: Cinzel, Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.event-name {
+  font-family: Cinzel, Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.event-location {
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .button{
@@ -588,26 +887,20 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
         
         <!-- Helmet Glass / Bubble -->
         <circle cx="50" cy="50" r="26" fill="#1a1a2e" stroke="#e0e0e0" stroke-width="4"/>
-        <!-- Glass Reflection/Shine -->
         <path d="M 38 38 Q 45 32 52 38" stroke="rgba(255,255,255,0.6)" stroke-width="3" fill="none" stroke-linecap="round"/>
         
         <!-- Cat Head Inside Helmet -->
         <circle cx="50" cy="52" r="16" fill="#ffb703"/>
-        <!-- Cat Ears -->
         <polygon points="37,42 43,28 47,40" fill="#ffb703" stroke="#333" stroke-linejoin="round" stroke-width="2"/>
         <polygon points="63,42 57,28 53,40" fill="#ffb703" stroke="#333" stroke-linejoin="round" stroke-width="2"/>
-        <!-- Inner Ears -->
         <polygon points="39,40 43,32 45,39" fill="#ff758c"/>
         <polygon points="61,40 57,32 55,39" fill="#ff758c"/>
         
         <!-- Cat Face Features -->
-        <!-- Eyes -->
         <circle cx="44" cy="50" r="2" fill="#222"/>
         <circle cx="56" cy="50" r="2" fill="#222"/>
-        <!-- Nose & Mouth -->
         <polygon points="50,54 48,52 52,52" fill="#ff758c"/>
         <path d="M 48 56 Q 50 58 52 56" stroke="#222" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <!-- Whiskers -->
         <line x1="38" y1="53" x2="44" y2="54" stroke="#222" stroke-width="1.5"/>
         <line x1="38" y1="56" x2="44" y2="55" stroke="#222" stroke-width="1.5"/>
         <line x1="62" y1="53" x2="56" y2="54" stroke="#222" stroke-width="1.5"/>
@@ -645,75 +938,147 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
       <h2>The Lab & Beyond</h2>
     </div>
 
-    <div class="frame coming-soon-box">
-      <div class="coming-soon-badge">PRE-ORDERS OPEN NOW</div>
-      <div class="crescent" style="font-size:36px; margin:10px 0;">✨</div>
-      <h3 class="serif" style="font-size:clamp(22px, 3.5vw, 30px); letter-spacing:3px; margin-bottom:12px; color:var(--cream);">
-        RESERVE YOUR CUSTOM CREATIONS
-      </h3>
-      <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:520px; margin:auto;">
-        We are preparing our next batch of handmade garments and custom art pieces! Fill out our pre-order form below to claim your piece before standard drops.
-      </p>
+    <div class="lab-layout">
+      <!-- Main Content Left Side -->
+      <div class="frame coming-soon-box">
+        <div class="coming-soon-badge">PRE-ORDERS OPEN NOW</div>
+        <div class="crescent" style="font-size:36px; margin:10px 0;">✨</div>
+        <h3 class="serif" style="font-size:clamp(20px, 3vw, 26px); letter-spacing:3px; margin-bottom:12px; color:var(--cream);">
+          RESERVE YOUR CUSTOM CREATIONS
+        </h3>
+        <p style="color:var(--muted); font-size:13px; line-height:1.8; max-width:520px; margin:auto;">
+          We are preparing our next batch of handmade garments and custom art pieces! Fill out our pre-order form below to claim your piece before standard drops.
+        </p>
 
-      <div style="margin-top:20px;">
-        <a class="button" href="https://forms.gle/vXLJHr1VRdCBTWUi9" target="_blank" rel="noopener" style="background:var(--hotpink); border-color:var(--hotpink); font-weight:700;">
-          ✦ SUBMIT PRE-ORDER FORM NOW ✦
-        </a>
-      </div>
+        <div style="margin-top:20px;">
+          <a class="button" href="https://forms.gle/vXLJHr1VRdCBTWUi9" target="_blank" rel="noopener" style="background:var(--hotpink); border-color:var(--hotpink); font-weight:700;">
+            ✦ SUBMIT PRE-ORDER FORM NOW ✦
+          </a>
+        </div>
 
-      <!-- BLOG-STYLE POD FEED -->
-      <div class="pod-feed-section">
-        <h4 class="serif" style="font-size:13px; letter-spacing:3px; color:var(--pink); margin-bottom:6px;">
-          LATEST FROM THE LAB
-        </h4>
-        <p style="font-size:11px; color:var(--muted);">Tap a pod to view our recent creations</p>
+        <!-- BLOG-STYLE POD FEED -->
+        <div class="pod-feed-section">
+          <h4 class="serif" style="font-size:13px; letter-spacing:3px; color:var(--pink); margin-bottom:6px;">
+            LATEST FROM THE LAB
+          </h4>
+          <p style="font-size:11px; color:var(--muted);">Tap a pod to view our recent creations</p>
 
-        <div class="pod-grid">
-          
-          <!-- MODULE 001 POD (Top Center Stage Spot) -->
-          <div class="pod-card span-2-pod">
-            <div class="pod-item" onclick="switchTab('module001')">
-              <img src="Module001.jpeg" alt="Lunar Lynx Vegas Baby Tees Collection">
-              <div class="pod-overlay">✦ VIEW DROP & PRE-ORDER ✦</div>
+          <div class="pod-grid">
+            
+            <!-- MODULE 001 POD -->
+            <div class="pod-card span-2-pod">
+              <div class="pod-item" onclick="switchTab('module001')">
+                <img src="Module001.jpeg" alt="Lunar Lynx Vegas Baby Tees Collection">
+                <div class="pod-overlay">✦ VIEW DROP & PRE-ORDER ✦</div>
+              </div>
+              <div class="pod-title">MODULE 001 : VEGAS BABY TEES</div>
             </div>
-            <div class="pod-title">MODULE 001 : VEGAS BABY TEES</div>
-          </div>
 
-          <!-- LAB JOURNAL 001 POD -->
-          <div class="pod-card">
-            <a class="pod-item" href="https://www.instagram.com/purrgalactic/reel/DdPL1kihco9/" target="_blank" rel="noopener">
-              <img src="LunarLynxreel1.jpg" alt="Lunar Lynx Custom Apparel Reel 1">
-              <div class="pod-overlay">▶ WATCH REEL</div>
-            </a>
-            <div class="pod-title">LAB JOURNAL 001</div>
-          </div>
+            <!-- LAB JOURNAL 001 POD -->
+            <div class="pod-card">
+              <a class="pod-item" href="https://www.instagram.com/purrgalactic/reel/DdPL1kihco9/" target="_blank" rel="noopener">
+                <img src="LunarLynxreel1.jpg" alt="Lunar Lynx Custom Apparel Reel 1">
+                <div class="pod-overlay">▶ WATCH REEL</div>
+              </a>
+              <div class="pod-title">LAB JOURNAL 001</div>
+            </div>
 
-          <!-- LAB JOURNAL 002 POD -->
-          <div class="pod-card">
-            <a class="pod-item" href="https://www.instagram.com/purrgalactic/reel/DdSXa_ZTm89/" target="_blank" rel="noopener">
-              <img src="LunarLynxreel2.jpg" alt="Lunar Lynx Custom Apparel Reel 2">
-              <div class="pod-overlay">▶ WATCH REEL</div>
-            </a>
-            <div class="pod-title">LAB JOURNAL 002</div>
-          </div>
+            <!-- LAB JOURNAL 002 POD -->
+            <div class="pod-card">
+              <a class="pod-item" href="https://www.instagram.com/purrgalactic/reel/DdSXa_ZTm89/" target="_blank" rel="noopener">
+                <img src="LunarLynxreel2.jpg" alt="Lunar Lynx Custom Apparel Reel 2">
+                <div class="pod-overlay">▶ WATCH REEL</div>
+              </a>
+              <div class="pod-title">LAB JOURNAL 002</div>
+            </div>
 
-          <!-- FEATURED TRANSMISSION 001 POD -->
-          <div class="pod-card span-2-pod transmission-pod">
-            <a class="pod-item" href="https://youtu.be/iZy2s3i-uCM?is=ecLF2AGdmu_lZ9XN" target="_blank" rel="noopener">
-              <img src="https://img.youtube.com/vi/iZy2s3i-uCM/maxresdefault.jpg" alt="Featured Transmission 001 Video Thumbnail" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/iZy2s3i-uCM/hqdefault.jpg';">
-              <div class="pod-overlay">▶ WATCH TRANSMISSION</div>
-            </a>
-            <div class="pod-title">FEATURED TRANSMISSION 001</div>
-          </div>
+            <!-- FEATURED TRANSMISSION 001 POD -->
+            <div class="pod-card span-2-pod transmission-pod">
+              <a class="pod-item" href="https://youtu.be/iZy2s3i-uCM?is=ecLF2AGdmu_lZ9XN" target="_blank" rel="noopener">
+                <img src="https://img.youtube.com/vi/iZy2s3i-uCM/maxresdefault.jpg" alt="Featured Transmission 001 Video Thumbnail" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/iZy2s3i-uCM/hqdefault.jpg';">
+                <div class="pod-overlay">▶ WATCH TRANSMISSION</div>
+              </a>
+              <div class="pod-title">FEATURED TRANSMISSION 001</div>
+            </div>
 
+          </div>
+        </div>
+
+        <div style="margin-top:36px;">
+          <a class="button" href="https://www.instagram.com/purrgalactic?stkn=MWhjc3RxcHIyZWlvMA==" target="_blank" rel="noopener">
+            FOLLOW @PURRGALACTIC FOR DROP ANNOUNCEMENTS →
+          </a>
         </div>
       </div>
 
-      <div style="margin-top:36px;">
-        <a class="button" href="https://www.instagram.com/purrgalactic?stkn=MWhjc3RxcHIyZWlvMA==" target="_blank" rel="noopener">
-          FOLLOW @PURRGALACTIC FOR DROP ANNOUNCEMENTS →
-        </a>
+      <!-- Right Sidebar: VENDOR SCHEDULE MINI WIDGET -->
+      <div class="vendor-widget-card" onclick="openVendorModal()" style="cursor:pointer;">
+        <div class="vendor-widget-header">
+          <div class="vendor-widget-title">VENDOR SCHEDULE</div>
+          <div style="font-size:12px; color:var(--pink);">✦</div>
+        </div>
+        
+        <div class="mini-cal-nav">
+          <span style="font-size:10px; color:var(--muted);">LIVE TRANSMISSION</span>
+          <span style="color:var(--gold); font-weight:600;">SEPTEMBER 2026</span>
+        </div>
+
+        <div class="mini-cal-grid">
+          <div class="mini-cal-day-header">S</div>
+          <div class="mini-cal-day-header">M</div>
+          <div class="mini-cal-day-header">T</div>
+          <div class="mini-cal-day-header">W</div>
+          <div class="mini-cal-day-header">T</div>
+          <div class="mini-cal-day-header">F</div>
+          <div class="mini-cal-day-header">S</div>
+          
+          <!-- Sept 2026 Calendar Grid (Starts on Tuesday Sept 1) -->
+          <div class="mini-cal-cell other-month">30</div>
+          <div class="mini-cal-cell other-month">31</div>
+          <div class="mini-cal-cell">1</div>
+          <div class="mini-cal-cell">2</div>
+          <div class="mini-cal-cell">3</div>
+          <div class="mini-cal-cell">4</div>
+          <div class="mini-cal-cell">5</div>
+
+          <div class="mini-cal-cell">6</div>
+          <div class="mini-cal-cell">7</div>
+          <div class="mini-cal-cell">8</div>
+          <div class="mini-cal-cell">9</div>
+          <div class="mini-cal-cell">10</div>
+          <div class="mini-cal-cell">11</div>
+          <div class="mini-cal-cell">12</div>
+
+          <div class="mini-cal-cell">13</div>
+          <div class="mini-cal-cell">14</div>
+          <div class="mini-cal-cell">15</div>
+          <div class="mini-cal-cell">16</div>
+          <div class="mini-cal-cell">17</div>
+          <div class="mini-cal-cell">18</div>
+          <div class="mini-cal-cell has-event">19</div>
+
+          <div class="mini-cal-cell">20</div>
+          <div class="mini-cal-cell has-event">21</div>
+          <div class="mini-cal-cell">22</div>
+          <div class="mini-cal-cell">23</div>
+          <div class="mini-cal-cell">24</div>
+          <div class="mini-cal-cell">25</div>
+          <div class="mini-cal-cell has-event">26</div>
+
+          <div class="mini-cal-cell has-event">27</div>
+          <div class="mini-cal-cell has-event">28</div>
+          <div class="mini-cal-cell">29</div>
+          <div class="mini-cal-cell">30</div>
+          <div class="mini-cal-cell other-month">1</div>
+          <div class="mini-cal-cell other-month">2</div>
+          <div class="mini-cal-cell other-month">3</div>
+        </div>
+
+        <div class="vendor-widget-footer">
+          <span style="font-family:Cinzel,Georgia,serif; font-size:10px; letter-spacing:2px; color:var(--pink);">[ VIEW FULL TRANSMISSION ✦ ]</span>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -919,6 +1284,112 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
 </main>
 
+<!-- VENDOR SCHEDULE FULL TRANSMISSION MODAL -->
+<div id="vendor-modal">
+  <div class="transmission-container">
+    <div class="transmission-top-bar">
+      <div class="transmission-status"><span></span> LIVE VENDING DATA TRANSMISSION</div>
+      <button class="close-transmission-btn" onclick="closeVendorModal()">✕ CLOSE TRANSMISSION</button>
+    </div>
+
+    <div class="transmission-grid-layout">
+      <!-- Expanded Calendar View -->
+      <div class="full-cal-wrapper">
+        <div class="full-cal-header">
+          <button class="cal-nav-btn">‹</button>
+          <span>SEPTEMBER 2026</span>
+          <button class="cal-nav-btn">›</button>
+        </div>
+
+        <div class="full-cal-grid">
+          <div class="full-cal-day-header">SUN</div>
+          <div class="full-cal-day-header">MON</div>
+          <div class="full-cal-day-header">TUE</div>
+          <div class="full-cal-day-header">WED</div>
+          <div class="full-cal-day-header">THU</div>
+          <div class="full-cal-day-header">FRI</div>
+          <div class="full-cal-day-header">SAT</div>
+
+          <div class="full-cal-cell other-month">30</div>
+          <div class="full-cal-cell other-month">31</div>
+          <div class="full-cal-cell">1</div>
+          <div class="full-cal-cell">2</div>
+          <div class="full-cal-cell">3</div>
+          <div class="full-cal-cell">4</div>
+          <div class="full-cal-cell">5</div>
+
+          <div class="full-cal-cell">6</div>
+          <div class="full-cal-cell">7</div>
+          <div class="full-cal-cell">8</div>
+          <div class="full-cal-cell">9</div>
+          <div class="full-cal-cell">10</div>
+          <div class="full-cal-cell">11</div>
+          <div class="full-cal-cell">12</div>
+
+          <div class="full-cal-cell">13</div>
+          <div class="full-cal-cell">14</div>
+          <div class="full-cal-cell">15</div>
+          <div class="full-cal-cell">16</div>
+          <div class="full-cal-cell">17</div>
+          <div class="full-cal-cell">18</div>
+          <div class="full-cal-cell has-event" title="09/19/2026: 22 Veterans Walk">19</div>
+
+          <div class="full-cal-cell">20</div>
+          <div class="full-cal-cell has-event" title="09/21/2026: MF Monday">21</div>
+          <div class="full-cal-cell">22</div>
+          <div class="full-cal-cell">23</div>
+          <div class="full-cal-cell">24</div>
+          <div class="full-cal-cell">25</div>
+          <div class="full-cal-cell has-event" title="09/26/2026: Rooted N Flo">26</div>
+
+          <div class="full-cal-cell has-event" title="09/27/2026: Obodo Festival">27</div>
+          <div class="full-cal-cell has-event" title="09/28/2026: MF Monday">28</div>
+          <div class="full-cal-cell">29</div>
+          <div class="full-cal-cell">30</div>
+          <div class="full-cal-cell other-month">1</div>
+          <div class="full-cal-cell other-month">2</div>
+          <div class="full-cal-cell other-month">3</div>
+        </div>
+      </div>
+
+      <!-- Events List Feed -->
+      <div class="events-detail-list">
+        <div style="font-family:Cinzel,Georgia,serif; font-size:12px; letter-spacing:2px; color:var(--gold); margin-bottom:4px;">UPCOMING VENDING DATES</div>
+        
+        <div class="event-detail-item">
+          <div class="event-date-badge">09/19/2026</div>
+          <div class="event-name">22 VETERANS WALK</div>
+          <div class="event-location">✦ Lunar Lynx Pop-Up Station</div>
+        </div>
+
+        <div class="event-detail-item">
+          <div class="event-date-badge">09/21/2026</div>
+          <div class="event-name">MF MONDAY</div>
+          <div class="event-location">✦ Weekly Vending Transmission</div>
+        </div>
+
+        <div class="event-detail-item">
+          <div class="event-date-badge">09/26/2026</div>
+          <div class="event-name">ROOTED N FLO</div>
+          <div class="event-location">✦ Live Market Showcase</div>
+        </div>
+
+        <div class="event-detail-item">
+          <div class="event-date-badge">09/27/2026</div>
+          <div class="event-name">OBODO FESTIVAL</div>
+          <div class="event-location">✦ Festival Vending & Art</div>
+        </div>
+
+        <div class="event-detail-item">
+          <div class="event-date-badge">09/28/2026</div>
+          <div class="event-name">MF MONDAY</div>
+          <div class="event-location">✦ Weekly Vending Transmission</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   LUNAR LYNX CUSTOM LAB ✦ VEGAS BORN ✦ 2026
 </footer>
@@ -946,6 +1417,24 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function openVendorModal() {
+    document.getElementById('vendor-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVendorModal() {
+    document.getElementById('vendor-modal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal when clicking outside content container
+  window.addEventListener('click', (e) => {
+    const modal = document.getElementById('vendor-modal');
+    if (e.target === modal) {
+      closeVendorModal();
+    }
+  });
+
   /* CUSTOM CAT ASTRONAUT CURSOR SCRIPT */
   const cursor = document.getElementById('cat-astronaut-cursor');
 
@@ -971,7 +1460,6 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
   document.addEventListener('mouseenter', () => {
       cursor.style.display = 'block';
   });
-
 
   /* INTERACTIVE CLOUD & SPACE DUST CANVAS SCRIPT */
   (function initSpaceCanvas() {
