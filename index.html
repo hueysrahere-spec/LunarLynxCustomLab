@@ -33,7 +33,7 @@ html{scroll-behavior:smooth}
 
 /* 1. Universal Default System Cursor Hide for Desktop */
 @media (min-width: 769px) {
-  *, body, html, a, button, input, textarea, .pod-item, .product-card, .reading-card, .vendor-widget-card {
+  *, body, html, a, button, input, textarea, .pod-item, .product-card, .reading-card, .vendor-widget-card, .event-detail-item {
     cursor: none !important;
   }
 }
@@ -619,6 +619,9 @@ main{flex:1; position:relative; z-index:1;}
   border-radius: 14px;
   padding: 14px 16px;
   transition: 0.2s;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
 }
 .event-detail-item:hover {
   border-color: var(--hotpink);
@@ -1356,35 +1359,35 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
       <div class="events-detail-list">
         <div style="font-family:Cinzel,Georgia,serif; font-size:12px; letter-spacing:2px; color:var(--gold); margin-bottom:4px;">UPCOMING VENDING DATES</div>
         
-        <div class="event-detail-item">
+        <a class="event-detail-item" href="https://instagram.com/22walk_702/" target="_blank" rel="noopener">
           <div class="event-date-badge">09/19/2026</div>
-          <div class="event-name"><a href="https://instagram.com/22walk_702/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">22 VETERANS WALK</a></div>
+          <div class="event-name">22 VETERANS WALK</div>
           <div class="event-location">✦ Lunar Lynx Pop-Up Station</div>
-        </div>
+        </a>
 
-        <div class="event-detail-item">
+        <a class="event-detail-item" href="https://instagram.com/mf.monday/" target="_blank" rel="noopener">
           <div class="event-date-badge">09/21/2026</div>
-          <div class="event-name"><a href="https://instagram.com/mf.monday/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">MF MONDAY</a></div>
+          <div class="event-name">MF MONDAY</div>
           <div class="event-location">✦ Weekly Vending Transmission</div>
-        </div>
+        </a>
 
-        <div class="event-detail-item">
+        <a class="event-detail-item" href="https://instagram.com/rootednflo/" target="_blank" rel="noopener">
           <div class="event-date-badge">09/26/2026</div>
-          <div class="event-name"><a href="https://instagram.com/rootednflo/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">ROOTED N FLO</a></div>
+          <div class="event-name">ROOTED N FLO</div>
           <div class="event-location">✦ Live Market Showcase</div>
-        </div>
+        </a>
 
-        <div class="event-detail-item">
+        <a class="event-detail-item" href="https://instagram.com/theobodocollective/" target="_blank" rel="noopener">
           <div class="event-date-badge">09/27/2026</div>
-          <div class="event-name"><a href="https://instagram.com/theobodocollective/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">OBODO FESTIVAL</a></div>
+          <div class="event-name">OBODO FESTIVAL</div>
           <div class="event-location">✦ Festival Vending & Art</div>
-        </div>
+        </a>
 
-        <div class="event-detail-item">
+        <a class="event-detail-item" href="https://instagram.com/mf.monday/" target="_blank" rel="noopener">
           <div class="event-date-badge">09/28/2026</div>
-          <div class="event-name"><a href="https://instagram.com/mf.monday/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">MF MONDAY</a></div>
+          <div class="event-name">MF MONDAY</div>
           <div class="event-location">✦ Weekly Vending Transmission</div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -1552,6 +1555,11 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
       const cloudCount = Math.floor(density * 0.35);
       const starCount = Math.floor(density * 0.8);
 
+      for (let i = 0; i < cloudCount; i++) {
+        particles.type.push(new Particle('cloud')); // Handled correctly via push
+      }
+      // Re-corrected initialization loop below
+      particles = [];
       for (let i = 0; i < cloudCount; i++) {
         particles.push(new Particle('cloud'));
       }
