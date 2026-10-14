@@ -557,6 +557,7 @@ main{flex:1; position:relative; z-index:1;}
   align-items: center;
   justify-content: center;
   transition: 0.2s;
+  cursor: pointer;
 }
 .cal-nav-btn:hover {
   background: var(--hotpink);
@@ -1021,60 +1022,14 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
           <div style="font-size:12px; color:var(--pink);">✦</div>
         </div>
         
-        <div class="mini-cal-nav">
-          <span style="font-size:10px; color:var(--muted);">LIVE TRANSMISSION</span>
-          <span style="color:var(--gold); font-weight:600;">SEPTEMBER 2026</span>
+        <div class="mini-cal-nav" onclick="event.stopPropagation();">
+          <button class="cal-nav-btn" style="width:24px; height:24px; font-size:10px;" onclick="changeMonth(-1)">‹</button>
+          <span id="mini-cal-month-title" style="color:var(--gold); font-weight:600;">OCTOBER 2026</span>
+          <button class="cal-nav-btn" style="width:24px; height:24px; font-size:10px;" onclick="changeMonth(1)">›</button>
         </div>
 
-        <div class="mini-cal-grid">
-          <div class="mini-cal-day-header">S</div>
-          <div class="mini-cal-day-header">M</div>
-          <div class="mini-cal-day-header">T</div>
-          <div class="mini-cal-day-header">W</div>
-          <div class="mini-cal-day-header">T</div>
-          <div class="mini-cal-day-header">F</div>
-          <div class="mini-cal-day-header">S</div>
-          
-          <!-- Sept 2026 Calendar Grid (Starts on Tuesday Sept 1) -->
-          <div class="mini-cal-cell other-month">30</div>
-          <div class="mini-cal-cell other-month">31</div>
-          <div class="mini-cal-cell">1</div>
-          <div class="mini-cal-cell">2</div>
-          <div class="mini-cal-cell">3</div>
-          <div class="mini-cal-cell">4</div>
-          <div class="mini-cal-cell">5</div>
-
-          <div class="mini-cal-cell">6</div>
-          <div class="mini-cal-cell">7</div>
-          <div class="mini-cal-cell">8</div>
-          <div class="mini-cal-cell">9</div>
-          <div class="mini-cal-cell">10</div>
-          <div class="mini-cal-cell">11</div>
-          <div class="mini-cal-cell">12</div>
-
-          <div class="mini-cal-cell">13</div>
-          <div class="mini-cal-cell">14</div>
-          <div class="mini-cal-cell">15</div>
-          <div class="mini-cal-cell">16</div>
-          <div class="mini-cal-cell">17</div>
-          <div class="mini-cal-cell">18</div>
-          <div class="mini-cal-cell has-event">19</div>
-
-          <div class="mini-cal-cell">20</div>
-          <div class="mini-cal-cell has-event">21</div>
-          <div class="mini-cal-cell">22</div>
-          <div class="mini-cal-cell">23</div>
-          <div class="mini-cal-cell">24</div>
-          <div class="mini-cal-cell">25</div>
-          <div class="mini-cal-cell has-event">26</div>
-
-          <div class="mini-cal-cell has-event">27</div>
-          <div class="mini-cal-cell has-event">28</div>
-          <div class="mini-cal-cell">29</div>
-          <div class="mini-cal-cell">30</div>
-          <div class="mini-cal-cell other-month">1</div>
-          <div class="mini-cal-cell other-month">2</div>
-          <div class="mini-cal-cell other-month">3</div>
+        <div class="mini-cal-grid" id="mini-cal-grid">
+          <!-- Dynamically Rendered -->
         </div>
 
         <div class="vendor-widget-footer">
@@ -1299,95 +1254,19 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
       <!-- Expanded Calendar View -->
       <div class="full-cal-wrapper">
         <div class="full-cal-header">
-          <button class="cal-nav-btn">‹</button>
-          <span>SEPTEMBER 2026</span>
-          <button class="cal-nav-btn">›</button>
+          <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+          <span id="full-cal-month-title">OCTOBER 2026</span>
+          <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
         </div>
 
-        <div class="full-cal-grid">
-          <div class="full-cal-day-header">SUN</div>
-          <div class="full-cal-day-header">MON</div>
-          <div class="full-cal-day-header">TUE</div>
-          <div class="full-cal-day-header">WED</div>
-          <div class="full-cal-day-header">THU</div>
-          <div class="full-cal-day-header">FRI</div>
-          <div class="full-cal-day-header">SAT</div>
-
-          <div class="full-cal-cell other-month">30</div>
-          <div class="full-cal-cell other-month">31</div>
-          <div class="full-cal-cell">1</div>
-          <div class="full-cal-cell">2</div>
-          <div class="full-cal-cell">3</div>
-          <div class="full-cal-cell">4</div>
-          <div class="full-cal-cell">5</div>
-
-          <div class="full-cal-cell">6</div>
-          <div class="full-cal-cell">7</div>
-          <div class="full-cal-cell">8</div>
-          <div class="full-cal-cell">9</div>
-          <div class="full-cal-cell">10</div>
-          <div class="full-cal-cell">11</div>
-          <div class="full-cal-cell">12</div>
-
-          <div class="full-cal-cell">13</div>
-          <div class="full-cal-cell">14</div>
-          <div class="full-cal-cell">15</div>
-          <div class="full-cal-cell">16</div>
-          <div class="full-cal-cell">17</div>
-          <div class="full-cal-cell">18</div>
-          <div class="full-cal-cell has-event" title="09/19/2026: 22 Veterans Walk">19</div>
-
-          <div class="full-cal-cell">20</div>
-          <div class="full-cal-cell has-event" title="09/21/2026: MF Monday">21</div>
-          <div class="full-cal-cell">22</div>
-          <div class="full-cal-cell">23</div>
-          <div class="full-cal-cell">24</div>
-          <div class="full-cal-cell">25</div>
-          <div class="full-cal-cell has-event" title="09/26/2026: Rooted N Flo">26</div>
-
-          <div class="full-cal-cell has-event" title="09/27/2026: Obodo Festival">27</div>
-          <div class="full-cal-cell has-event" title="09/28/2026: MF Monday">28</div>
-          <div class="full-cal-cell">29</div>
-          <div class="full-cal-cell">30</div>
-          <div class="full-cal-cell other-month">1</div>
-          <div class="full-cal-cell other-month">2</div>
-          <div class="full-cal-cell other-month">3</div>
+        <div class="full-cal-grid" id="full-cal-grid">
+          <!-- Dynamically Rendered -->
         </div>
       </div>
 
       <!-- Events List Feed -->
-      <div class="events-detail-list">
-        <div style="font-family:Cinzel,Georgia,serif; font-size:12px; letter-spacing:2px; color:var(--gold); margin-bottom:4px;">UPCOMING VENDING DATES</div>
-        
-        <a class="event-detail-item" href="https://instagram.com/22walk_702/" target="_blank" rel="noopener">
-          <div class="event-date-badge">09/19/2026</div>
-          <div class="event-name">22 VETERANS WALK</div>
-          <div class="event-location">✦ Lunar Lynx Pop-Up Station</div>
-        </a>
-
-        <a class="event-detail-item" href="https://instagram.com/mf.monday/" target="_blank" rel="noopener">
-          <div class="event-date-badge">09/21/2026</div>
-          <div class="event-name">MF MONDAY</div>
-          <div class="event-location">✦ Weekly Vending Transmission</div>
-        </a>
-
-        <a class="event-detail-item" href="https://instagram.com/rootednflo/" target="_blank" rel="noopener">
-          <div class="event-date-badge">09/26/2026</div>
-          <div class="event-name">ROOTED N FLO</div>
-          <div class="event-location">✦ Live Market Showcase</div>
-        </a>
-
-        <a class="event-detail-item" href="https://instagram.com/theobodocollective/" target="_blank" rel="noopener">
-          <div class="event-date-badge">09/27/2026</div>
-          <div class="event-name">OBODO FESTIVAL</div>
-          <div class="event-location">✦ Festival Vending & Art</div>
-        </a>
-
-        <a class="event-detail-item" href="https://instagram.com/mf.monday/" target="_blank" rel="noopener">
-          <div class="event-date-badge">09/28/2026</div>
-          <div class="event-name">MF MONDAY</div>
-          <div class="event-location">✦ Weekly Vending Transmission</div>
-        </a>
+      <div class="events-detail-list" id="events-detail-list">
+        <!-- Dynamically Rendered -->
       </div>
     </div>
   </div>
@@ -1436,6 +1315,149 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
     if (e.target === modal) {
       closeVendorModal();
     }
+  });
+
+  /* CALENDAR DATA & DYNAMIC RENDERING */
+  const monthsData = [
+    {
+      name: "SEPTEMBER 2026",
+      year: 2026,
+      month: 8, // September
+      events: [
+        { date: "09/19/2026", name: "22 VETERANS WALK", location: "✦ Lunar Lynx Pop-Up Station", link: "https://instagram.com/22walk_702/" },
+        { date: "09/21/2026", name: "MF MONDAY", location: "✦ Weekly Vending Transmission", link: "https://instagram.com/mf.monday/" },
+        { date: "09/26/2026", name: "ROOTED N FLO", location: "✦ Live Market Showcase", link: "https://instagram.com/rootednflo/" },
+        { date: "09/27/2026", name: "OBODO FESTIVAL", location: "✦ Festival Vending & Art", link: "https://instagram.com/theobodocollective/" },
+        { date: "09/28/2026", name: "MF MONDAY", location: "✦ Weekly Vending Transmission", link: "https://instagram.com/mf.monday/" }
+      ]
+    },
+    {
+      name: "OCTOBER 2026",
+      year: 2026,
+      month: 9, // October
+      events: [
+        { date: "10/14/2026", name: "MF MONDAY", location: "✦ Weekly Vending Transmission", link: "https://instagram.com/mf.monday/" },
+        { date: "10/20/2026", name: "SUBTEXT POETRY OPEN MIC", location: "✦ Spoken Word & Art", link: "https://instagram.com/subtext.lv" },
+        { date: "10/25/2026", name: "OBODO FESTIVAL", location: "✦ Festival Vending & Art", link: "https://instagram.com/theobodocollective/" }
+      ]
+    }
+  ];
+
+  let currentMonthIndex = 1; // Default to October 2026 (index 1)
+
+  function changeMonth(direction) {
+    currentMonthIndex += direction;
+    if (currentMonthIndex < 0) currentMonthIndex = 0;
+    if (currentMonthIndex >= monthsData.length) currentMonthIndex = monthsData.length - 1;
+    renderCalendars();
+  }
+
+  function renderCalendars() {
+    const currentData = monthsData[currentMonthIndex];
+
+    // Update titles
+    document.getElementById('mini-cal-month-title').textContent = currentData.name;
+    document.getElementById('full-cal-month-title').textContent = currentData.name;
+
+    // Generate grid cells
+    const year = currentData.year;
+    const month = currentData.month;
+    
+    const firstDayIndex = new Date(year, month, 1).getDay();
+    const totalDays = new Date(year, month + 1, 0).getDate();
+    const prevTotalDays = new Date(year, month, 0).getDate();
+
+    let cellsHtml = '';
+    let miniCellsHtml = '';
+
+    // Day Headers for full cal
+    const dayHeaders = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const miniDayHeaders = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
+    let fullGridHeaderHtml = '';
+    dayHeaders.forEach(d => {
+      fullGridHeaderHtml += `<div class="full-cal-day-header">${d}</div>`;
+    });
+
+    let miniGridHeaderHtml = '';
+    miniDayHeaders.forEach(d => {
+      miniGridHeaderHtml += `<div class="mini-cal-day-header">${d}</div>`;
+    });
+
+    cellsHtml += fullGridHeaderHtml;
+    miniCellsHtml += miniGridHeaderHtml;
+
+    // Previous month trailing days
+    let calendarDays = [];
+    for (let i = firstDayIndex - 1; i >= 0; i--) {
+      calendarDays.push({ day: prevTotalDays - i, isOther: true });
+    }
+    // Current month days
+    for (let i = 1; i <= totalDays; i++) {
+      calendarDays.push({ day: i, isOther: false });
+    }
+    // Next month leading days to complete grid
+    const remaining = (calendarDays.length <= 35) ? 35 - calendarDays.length : 42 - calendarDays.length;
+    for (let i = 1; i <= remaining; i++) {
+      calendarDays.push({ day: i, isOther: true });
+    }
+
+    // Map events by day number
+    const eventDaysMap = {};
+    currentData.events.forEach(ev => {
+      const parts = ev.date.split('/');
+      const evMonth = parseInt(parts[0], 10) - 1;
+      const evDay = parseInt(parts[1], 10);
+      if (evMonth === month) {
+        eventDaysMap[evDay] = true;
+      }
+    });
+
+    calendarDays.forEach((item, idx) => {
+      const hasEvent = !item.isOther && eventDaysMap[item.day];
+      
+      if (item.isOther) {
+        cellsHtml += `<div class="full-cal-cell other-month">${item.day}</div>`;
+        miniCellsHtml += `<div class="mini-cal-cell other-month">${item.day}</div>`;
+      } else {
+        const fullEventClass = hasEvent ? 'has-event' : '';
+        const matchingEvent = currentData.events.find(ev => {
+          const parts = ev.date.split('/');
+          return parseInt(parts[1], 10) === item.day && (parseInt(parts[0], 10) - 1) === month;
+        });
+        const tooltipTitle = matchingEvent ? `title="${matchingEvent.date}: ${matchingEvent.name}"` : '';
+        
+        cellsHtml += `<div class="full-cal-cell ${fullEventClass}" ${tooltipTitle}>${item.day}</div>`;
+        miniCellsHtml += `<div class="mini-cal-cell ${fullEventClass}">${item.day}</div>`;
+      }
+    });
+
+    document.getElementById('full-cal-grid').innerHTML = cellsHtml;
+    document.getElementById('mini-cal-grid').innerHTML = miniCellsHtml;
+
+    // Render Events Detail List
+    let eventsListHtml = `<div style="font-family:Cinzel,Georgia,serif; font-size:12px; letter-spacing:2px; color:var(--gold); margin-bottom:4px;">UPCOMING VENDING DATES (${currentData.name})</div>`;
+    
+    if (currentData.events.length === 0) {
+      eventsListHtml += `<div style="font-size:12px; color:var(--muted); padding:10px 0;">No events scheduled for this month yet. Check back soon!</div>`;
+    } else {
+      currentData.events.forEach(ev => {
+        eventsListHtml += `
+          <a class="event-detail-item" href="${ev.link}" target="_blank" rel="noopener">
+            <div class="event-date-badge">${ev.date}</div>
+            <div class="event-name">${ev.name}</div>
+            <div class="event-location">${ev.location}</div>
+          </a>
+        `;
+      });
+    }
+
+    document.getElementById('events-detail-list').innerHTML = eventsListHtml;
+  }
+
+  // Initialize calendars on load
+  window.addEventListener('DOMContentLoaded', () => {
+    renderCalendars();
   });
 
   /* CUSTOM CAT ASTRONAUT CURSOR SCRIPT */
@@ -1551,15 +1573,10 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
 
     function createParticles() {
       particles = [];
-      density = (width * height) / 10000;
+      let density = (width * height) / 10000;
       const cloudCount = Math.floor(density * 0.35);
       const starCount = Math.floor(density * 0.8);
 
-      for (let i = 0; i < cloudCount; i++) {
-        particles.type.push(new Particle('cloud')); // Handled correctly via push
-      }
-      // Re-corrected initialization loop below
-      particles = [];
       for (let i = 0; i < cloudCount; i++) {
         particles.push(new Particle('cloud'));
       }
