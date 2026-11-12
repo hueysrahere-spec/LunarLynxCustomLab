@@ -1024,7 +1024,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
         
         <div class="mini-cal-nav" onclick="event.stopPropagation();">
           <button class="cal-nav-btn" style="width:24px; height:24px; font-size:10px;" onclick="changeMonth(-1)">‹</button>
-          <span id="mini-cal-month-title" style="color:var(--gold); font-weight:600;">OCTOBER 2026</span>
+          <span id="mini-cal-month-title" style="color:var(--gold); font-weight:600;">NOVEMBER 2026</span>
           <button class="cal-nav-btn" style="width:24px; height:24px; font-size:10px;" onclick="changeMonth(1)">›</button>
         </div>
 
@@ -1255,7 +1255,7 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
       <div class="full-cal-wrapper">
         <div class="full-cal-header">
           <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
-          <span id="full-cal-month-title">OCTOBER 2026</span>
+          <span id="full-cal-month-title">NOVEMBER 2026</span>
           <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
         </div>
 
@@ -1340,10 +1340,28 @@ footer{text-align:center;padding:25px 0 35px;color:var(--muted);font-family:Cinz
         { date: "10/20/2026", name: "SUBTEXT POETRY OPEN MIC", location: "✦ Spoken Word & Art", link: "https://instagram.com/subtext.lv" },
         { date: "10/25/2026", name: "OBODO FESTIVAL", location: "✦ Festival Vending & Art", link: "https://instagram.com/theobodocollective/" }
       ]
+    },
+    {
+      name: "NOVEMBER 2026",
+      year: 2026,
+      month: 10, // November
+      events: [
+        { date: "11/03/2026", name: "SUBTEXT", location: "✦ Spoken Word & Art", link: "https://instagram.com/subtext.lv" },
+        { date: "11/04/2026", name: "MF OPEN MIC", location: "✦ Weekly Vending Transmission", link: "https://instagram.com/mf.monday/" },
+        { date: "11/10/2026", name: "SUBTEXT", location: "✦ Spoken Word & Art", link: "https://instagram.com/subtext.lv" },
+        { date: "11/11/2026", name: "MF OPEN MIC", location: "✦ Weekly Vending Transmission", link: "https://instagram.com/mf.monday/" },
+        { date: "11/13/2026", name: "FEED THE TRIBE FEEL THE VIBE FOOD DRIVE", location: "✦ 7PM - 11PM @zenden.lv", link: "https://instagram.com/zenden.lv" },
+        { date: "11/14/2026", name: "KONNECTED LV", location: "✦ 12PM - 3PM @konnectedlv", link: "https://instagram.com/konnectedlv" },
+        { date: "11/17/2026", name: "SUBTEXT", location: "✦ Spoken Word & Art", link: "https://instagram.com/subtext.lv" },
+        { date: "11/18/2026", name: "MF OPEN MIC", location: "✦ Weekly Vending Transmission", link: "https://instagram.com/mf.monday/" },
+        { date: "11/24/2026", name: "SUBTEXT", location: "✦ Spoken Word & Art", link: "https://instagram.com/subtext.lv" },
+        { date: "11/25/2026", name: "MF OPEN MIC", location: "✦ Weekly Vending Transmission", link: "https://instagram.com/mf.monday/" },
+        { date: "11/29/2026", name: "OBODO", location: "✦ Festival Vending & Art", link: "https://instagram.com/theobodocollective/" }
+      ]
     }
   ];
 
-  let currentMonthIndex = 1; // Default to October 2026 (index 1)
+  let currentMonthIndex = 2; // Default to November 2026 (index 2)
 
   function changeMonth(direction) {
     currentMonthIndex += direction;
